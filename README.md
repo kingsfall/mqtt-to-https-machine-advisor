@@ -2,11 +2,11 @@
 
 ## Content
 
-1. [Introduction](##introduction)
-2. [Configure and spin up droplet](##configure-and-spin-up-droplet)
-3. [Create Machine Advisor Endpoint](##create-machine-advisor-endpoint)
-4. [Setup and install MQTT broker](##setup-and-install-MQTT-broker)
-5. [Deleting droplet](##deleting-droplet)
+1. [Introduction](#introduction)
+2. [Configure and spin up droplet](#configure-and-spin-up-droplet)
+3. [Create Machine Advisor Endpoint](#create-machine-advisor-endpoint)
+4. [Setup and install MQTT broker](#setup-and-install-MQTT-broker)
+5. [Deleting droplet](#deleting-droplet)
 
 
 ## Introduction
