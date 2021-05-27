@@ -7,8 +7,8 @@ def on_connect(client, userdata, flags, rc):
 
     # Subscribing in on_connect() means that if we lose the connection and
     # reconnect then subscriptions will be renewed.
-    client.subscribe("vm-test/POWERTAG_M262")
-    client.subscribe("vm-test/PackagingMachine")
+    client.subscribe("FACTORY_NAME/MACHINE1") # subscribe based on required topic
+    client.subscribe("FACTORY_NAME/MACHINE2") # subscribe based on required topic
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
@@ -17,8 +17,10 @@ def on_message(client, userdata, msg):
     metrics = msg.payload.decode("utf-8")
     metrics = json.loads(metrics)
 
-    if "POWERTAG_M262" in msg.topic:
+    if "MACHINE1" in msg.topic: # associate topic based on machine_advisor_endpoints' array index
         index = 0
+    if "MACHINE2" in msg.topic: # associate topic based on machine_advisor_endpoints' array index
+        index = 1
 
 
     try:
@@ -46,10 +48,10 @@ def machine_advisor_post(metrics,machine_advisor_token,machine_advisor_url):
 
 
 # Key in MQTT broker information
-broker_ipaddress = "128.199.160.225" # "localhost" if running broker and client in same machine
+broker_ipaddress = "localhost" # "localhost" if running broker and client in same machine
 broker_portnumber = 1883
-broker_username = "admin"
-broker_password = "adminpassword"
+broker_username = "username" # configure broker username
+broker_password = "password" # configure broker password
 
 client = mqtt.Client()
 client.on_connect = on_connect
@@ -58,14 +60,17 @@ client.on_message = on_message
 client.username_pw_set(broker_username, broker_password)
 client.connect(broker_ipaddress, broker_portnumber, 60)
 
-# metrics ={"assetName":"Powertag_150","var12":899,"var12_timestamp":1622104416360,"var13":777,"var13_timestamp":1622104416360}
-# Remove Authorization; before keying into machine_advisor_token
 
 # Key in machine advisor endpoints as in an object in an array
 machine_advisor_endpoints = [
     {
-    "nickname": "Powertag_150",
-    "machine_advisor_token": "SharedAccessSignature sr=cnm-ih-na.azure-devices.net%2Furn%3Adev%3Aops%3A000000-EMA-prod-bec5acada1f6df13c6d0f31d&sig=j1uxypRCOgbbwgfHOKQU7FB0cy%2BaQ9WGk9Q3sd2hfcM%3D&se=1650979638",
+    "nickname": "ENDPOINT_NICKNAME1",
+    "machine_advisor_token": "MACHINE_ADVISOR_TOKEN", # Remove Authorization; before keying into machine_advisor_token
+    "machine_advisor_url": "https://cnm-ih-na.azure-devices.net/devices/urn:dev:ops:000000-EMA-prod-bec5acada1f6df13c6d0f31d/messages/events?api-version=2016-11-14"
+},
+    {
+    "nickname": "ENDPOINT_NICKNAME2",
+    "machine_advisor_token": "MACHINE_ADVISOR_TOKEN", # Remove Authorization; before keying into machine_advisor_token
     "machine_advisor_url": "https://cnm-ih-na.azure-devices.net/devices/urn:dev:ops:000000-EMA-prod-bec5acada1f6df13c6d0f31d/messages/events?api-version=2016-11-14"
 }
 ]
