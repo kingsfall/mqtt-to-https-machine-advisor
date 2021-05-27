@@ -1,5 +1,21 @@
 # mqtt-to-https-machine-advisor
 
+## Introduction
+
+IOT is an up and coming trend in Industry 4.0 and Smart Manufacturing. In developing countries where majority of manufacturing are located in, budget for Industry 4.0 is limited. How do we implement IOT in a cost effective way? 
+
+Schneider Electric Programmable Logic Controller (PLC) M241 and M251 is a cost effective solution to send data to the cloud for data collection, monitoring, analysis and machine learning. Below is a architecture of the solution.
+
+![IOT architecture](./images/step11.png)
+
+Although with Schneider Electric Programmable Logic Controller (PLC) M262, we can send data directly to secure cloud server via MQTTs, the cost is almost 2 times the price of M241 and M251. As such, this architecture is able to achieve what the M262 can do while having little compromise and saving customers money for future IOT projects.
+
+DigitalOcean also provides very cost effective solution for us to spin up a droplet, with cost going for as low as USD5/month (As of May 2021). 1 droplet can easily support up to 50-500 devices. However, further test still needs to be done. Contributions are definitely welcome.
+
+This guide can be implemented in under 1 hour. I will upload a sample M251 PLC program for you to test. This guide is a quick tutorial on how to implement a simple IOT solution with off the shelf Schneider Electric IOT solution. 
+
+I am not responsible for any loss of property or data from following this guide.
+
 ## Configure and spin up droplet
 
 Create an account with [DigitalOcean](https://digitalocean.com), create, setup and configure the droplet as below. The cheapest plan is more than sufficient for 50 connected devices.
