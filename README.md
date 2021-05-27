@@ -2,7 +2,20 @@
 
 ## Configure and spin up droplet
 
+Create an account with [DigitalOcean](https://digitalocean.com), create, setup and configure the droplet as below. The cheapest plan is more than sufficient for 50 connected devices.
 
+![Create droplet](./images/step1.png)
+![Configure droplet](./images/step2.png)
+![Select plan](./images/step3.png)
+
+It is recommended to secure your droplet by enabling only ssh keys. Follow the guide by DigitalOcean to create a ssh keys.
+
+![Configure ssh keys](./images/step4.png)
+
+Finish up your configuration by selecting the location of your droplet. You should probably choose a location closest to your connected devices. Spinning up the droplet will take between 1-2mins. Thereafter, copy the ip address of your droplet so that you can access it by ssh.
+
+![Spinning up droplet](./images/step5.png)
+![Copy ipaddress](./images/step6.png)
 
 ## Setup & Install MQTT broker
 
@@ -80,7 +93,7 @@ For MQTT broker login credentials, we make changes to the code:
 ```python
 # Key in MQTT broker information
 broker_ipaddress = "localhost" # "localhost" if running broker and client in same machine
-broker_portnumber = 1883
+broker_portnumber = 1883 # default MQTT port number is 1883
 broker_username = "username" # configure broker username
 broker_password = "password" # configure broker password
 ```
@@ -118,3 +131,10 @@ if "MACHINE2" in msg.topic: # associate topic based on machine_advisor_endpoints
 ```shell
 python3 ./src/paho-mqtt-client.py
 ```
+
+## Deleting droplet
+
+Make sure to delete your droplet or else DigitalOcean will continue to charge you even when your droplet is offline. To delete droplet, follow steps below.
+
+![Deleting droplet](./images/step7.png)
+![Confirm delete droplet](./images/step8.png)
