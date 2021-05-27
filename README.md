@@ -17,6 +17,16 @@ Finish up your configuration by selecting the location of your droplet. You shou
 ![Spinning up droplet](./images/step5.png)
 ![Copy ipaddress](./images/step6.png)
 
+## Create Machine Advisor Endpoint
+
+1. Create [Machine Advisor](https://ecostruxure-machine-advisor.se.app) account and create a machine by following video below.
+
+[![MA Register](https://img.youtube.com/vi/riQ2fUZWysM/0.jpg)](https://www.youtube.com/watch?v=riQ2fUZWysM)
+
+2. To configure the Machine Advisor Endpoint, go to the configuration page and select the following settings as below. Remember to save TOKEN in a secured location. This is the password required to pubish data to your Machine Advisor Endpoint, which is configured in paho-mqtt-client.py (machine_advisor_token). Server address will also be used in paho-mqtt-client.py (machine_advisor_url).
+
+![Configure MA Endpoint](./images/step9.png)
+
 ## Setup & Install MQTT broker
 
 1. Login to droplet via ssh.
@@ -58,7 +68,7 @@ rm -f /etc/mosquitto/mosquitto.conf
 mosquitto_passwd -c /etc/mosquitto/passwd <USERNAME>
 ```
 
-7. Reconfigure mosquitto.conf file to allow only login with password
+7. Reconfigure mosquitto.conf file to allow only login with password. Press Ctrl + C to exit file configuration.
 
 ```shell
 cat > /etc/mosquitto/mosquitto.conf 
@@ -127,10 +137,35 @@ if "MACHINE2" in msg.topic: # associate topic based on machine_advisor_endpoints
     index = 1
 ```
 
-11. When you are done with the changes exit vim and start python script.
+11. When you are done with the changes exit vim and start python script in [tmux](https://tmuxcheatsheet.com).
+```
+tmux create-session
+```
+Enter command below to run MQTT client once tmux is created. Tmux allows you to run command while ssh is disconnected.
 ```shell
 python3 ./src/paho-mqtt-client.py
 ```
+When MQTT client is successfully connected to MQTT broker, you should see output code below.
+```
+Connected with result code 0
+```
+When MQTT client successfully receives data from subscribed topic, you should see the message payload below.
+```
+FACTORY_NAME/MACHINE1 b'{"assetName":"M241","Variable1":99,"Variable1_timestamp":1622104416360,"Variable2":88,"Variable2_timestamp":1622104416360}'
+
+FACTORY_NAME/MACHINE2 b'{"assetName":"M241","Variable1":99,"Variable1_timestamp":1622104416360,"Variable2":88,"Variable2_timestamp":1622104416360}'
+```
+When MQTT client successfully publishes to Machine Advisor, you should see the output code below.
+```
+Sending data to machine advisor endpoint: ENDPOINT_NICKNAME1
+Machine Advisor Post Status Code: 204
+
+Sending data to machine advisor endpoint: ENDPOINT_NICKNAME2
+Machine Advisor Post Status Code: 204
+```
+When you see Machine Advisor Post Status Code: 204, it means it has successfully posted. Go to Machine Advisor Values & you should see the updated values.
+
+![MA updated valus](./images/step10.png)
 
 ## Deleting droplet
 
