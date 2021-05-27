@@ -1,5 +1,14 @@
 # mqtt-to-https-machine-advisor
 
+## Content
+
+1. [Introduction](##introduction)
+2. [Configure and spin up droplet](##configure-and-spin-up-droplet)
+3. [Create Machine Advisor Endpoint](##create-machine-advisor-endpoint)
+4. [Setup and install MQTT broker](##setup-and-install-MQTT-broker)
+5. [Deleting droplet](##deleting-droplet)
+
+
 ## Introduction
 
 IOT is an up and coming trend in Industry 4.0 and Smart Manufacturing. In developing countries where majority of manufacturing are located in, budget for Industry 4.0 is limited. How do we implement IOT in a cost effective way? 
@@ -43,7 +52,7 @@ Finish up your configuration by selecting the location of your droplet. You shou
 
 ![Configure MA Endpoint](./images/step9.png)
 
-## Setup & Install MQTT broker
+## Setup and install MQTT broker
 
 1. Login to droplet via ssh.
 
