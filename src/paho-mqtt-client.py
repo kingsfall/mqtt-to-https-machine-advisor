@@ -66,12 +66,12 @@ machine_advisor_endpoints = [
     {
     "nickname": "ENDPOINT_NICKNAME1",
     "machine_advisor_token": "MACHINE_ADVISOR_TOKEN", # Remove Authorization; before keying into machine_advisor_token
-    "machine_advisor_url": "https://cnm-ih-na.azure-devices.net/devices/urn:dev:ops:000000-EMA-prod-bec5acada1f6df13c6d0f31d/messages/events?api-version=2016-11-14"
+    "machine_advisor_url": "MACHINE_ADVISOR_SERVER_URL"
 },
     {
     "nickname": "ENDPOINT_NICKNAME2",
     "machine_advisor_token": "MACHINE_ADVISOR_TOKEN", # Remove Authorization; before keying into machine_advisor_token
-    "machine_advisor_url": "https://cnm-ih-na.azure-devices.net/devices/urn:dev:ops:000000-EMA-prod-bec5acada1f6df13c6d0f31d/messages/events?api-version=2016-11-14"
+    "machine_advisor_url": "MACHINE_ADVISOR_SERVER_URL"
 }
 ]
 
