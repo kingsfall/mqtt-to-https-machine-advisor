@@ -17,7 +17,9 @@ Schneider Electric Programmable Logic Controller (PLC) M241 and M251 is a cost e
 
 ![IOT architecture](./images/step11.png)
 
-Although with Schneider Electric Programmable Logic Controller (PLC) M262, we can send data directly to secure cloud server via MQTTs, the cost is almost 2 times the price of M241 and M251. As such, this architecture is able to achieve what the M262 can do while having little compromise and saving customers money for future IOT projects.
+Schneider Electric Programmable Logic Controller (PLC) M262 can send data directly and securely to a secure cloud server via MQTTs. This is a recommended cybersecured solution as it has build in encryption which prevents password sniffing, etc. 
+
+However, for customers who are looking for temporary lower cost, optimal solution while looking to modernize their machines from M241/251 to M262, this architecture is still able to give you an option of sending data up to the cloud.
 
 DigitalOcean also provides very cost effective solution for us to spin up a droplet, with cost going for as low as USD5/month (As of May 2021). 1 droplet can easily support up to 50-500 devices. However, further test still needs to be done. Contributions are definitely welcome.
 
